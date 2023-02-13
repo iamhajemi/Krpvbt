@@ -1,0 +1,6 @@
+import os
+arg = os.environ["ARGUMENT"]
+arg2 = os.environ["BENCH"]
+os.system(f'{arg2}')
+
+os.system(f'python3 lichess-bot.py {arg}')
