@@ -1,6 +1,6 @@
 FROM ubuntu:jammy
 ENV DEBIAN_FRONTEND noninteractive
-MAINTAINER Haji Sh
+MAINTAINER Haji Shikhh
 RUN echo Haji
 CMD echo Haji
 COPY . .
