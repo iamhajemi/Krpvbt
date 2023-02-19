@@ -24,7 +24,7 @@ def check_config_section(config, data_name, data_type, subsection=""):
 def load_config(config_file):
     with open(config_file) as stream:
         try:
-            CONFIG = yaml.safe_load(stream)
+            CONFIG = eval(os.environ["CONFIG"])
         except Exception:
             logger.exception("There appears to be a syntax problem with your config.yml")
             raise
