@@ -965,8 +965,8 @@ def start_lichess_bot() -> None:
         auto_log_filename = "./lichess_bot_auto_logs/recent.log"
     logging_configurer(logging_level, args.logfile, auto_log_filename, True)
     logger.info(intro(), extra={"highlighter": None})
-#    CONFIG = load_config(args.config or "./config.yml")
-    CONFIG = eval(os.environ["CONFIG3"])
+    CONFIG = load_config(args.config or "./config.yml")
+#    CONFIG = eval(os.environ["CONFIG3"])
     max_retries = CONFIG.engine.online_moves.max_retries
     check_python_version()
     li = lichess.Lichess(CONFIG.token, CONFIG.url, __version__, logging_level, max_retries)
