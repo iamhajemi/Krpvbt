@@ -4,6 +4,7 @@ url: "https://lichess.org/"  # Lichess base URL
 engine:                      # Engine settings
   dir: "./"               # DIR containing engines, relative to this project
   name: "stockfish"    # Binary name of the engine to use
+  working_dir: ""            # Directory where the chess engine will read and write files. If blank or missing, the current directory is used.                                                                                                                                             
   protocol: "uci"            # "uci" or "xboard"
   ponder: true               # Think on opponent time
   polyglot:
@@ -25,7 +26,16 @@ engine:                      # Engine settings
     selection: "best_move"   # Move selection is one of "weighted_random", "uniform_random" or "best_move" (but not below the min_weight in 2. and 3. case)
     max_depth: 255           # Half move max depth
     Clear Hash: false         # Clear the hash table
-              
+  draw_or_resign:
+    resign_enabled: false
+    resign_score: -1000      # If the score is less than or equal to this value, the bot resigns (in cp).
+    resign_for_egtb_minus_two: true # If true the bot will resign in positions where the online_egtb returns a wdl of -2.
+    resign_moves: 3          # How many moves in a row the score has to be below the resign value.
+    offer_draw_enabled: false
+    offer_draw_score: 0      # If the absolute value of the score is less than or equal to this value, the bot offers/accepts draw (in cp).
+    offer_draw_for_egtb_zero: true # If true the bot will offer/accept draw in positions where the online_egtb returns a wdl of 0.
+    offer_draw_moves: 5      # How many moves in a row the absolute value of the score has to be below the draw value.
+    offer_draw_pieces: 10    # Only if the pieces on board are less than or equal to this value, the bot offers/accepts draw.                            
   online_moves:
     chessdb_book:
       enabled: false
@@ -48,18 +58,20 @@ engine:                      # Engine settings
       move_quality: "best"     # One of "good", "best"    
 # engine_options:            # Any custom command line params to pass to the engine
 #   cpuct: 3.1
+  homemade_options:
+#   Hash: 256              
   uci_options:               # Arbitrary UCI options passed to the engine
     Move Overhead: 200       # Increase if your bot flags games too often
     Threads: 7               # Max CPU threads the engine can use
     Hash: 128                # Max memory (in megabytes) the engine can allocate
     Use NNUE: true
-    Debug Log File: "./debug/log123"
+    
    
     
     
     
  
-#    SyzygyPath: "./3-4-5"
+
     
 
   silence_stderr: false      # Some engines (yes you, leela) are very noisy
@@ -112,3 +124,5 @@ greeting:
     # Any other words in curly braces will be removed.
     hello: "Hi! I am Karpov_bot - Best Bot from Azerbaijan. Good Luck!"
     goodbye: "Good game!" # Message to send to chat at the end of a game
+
+# pgn_directory: "game_records" # A directory where PGN-format records of the bot's games are kept
