@@ -10,7 +10,7 @@ engine:                      # Engine settings.
   ponder: true               # Think on opponent's time.
 
   polyglot:
-    enabled: true           # Activate polyglot book.
+    enabled: false           # Activate polyglot book.
     book:
       standard:              # List of book file paths for variant standard.
         - "./engines/PerfectCevdet6.bin"
@@ -28,11 +28,11 @@ engine:                      # Engine settings.
     resign_score: -1000      # If the score is less than or equal to this value, the bot resigns (in cp).
     resign_for_egtb_minus_two: false # If true the bot will resign in positions where the online_egtb returns a wdl of -2.
     resign_moves: 3          # How many moves in a row the score has to be below the resign value.
-    offer_draw_enabled: false
+    offer_draw_enabled: true
     offer_draw_score: 0      # If the absolute value of the score is less than or equal to this value, the bot offers/accepts draw (in cp).
-    offer_draw_for_egtb_zero: false # If true the bot will offer/accept draw in positions where the online_egtb returns a wdl of 0.
-    offer_draw_moves: 5      # How many moves in a row the absolute value of the score has to be below the draw value.
-    offer_draw_pieces: 10    # Only if the pieces on board are less than or equal to this value, the bot offers/accepts draw.
+    offer_draw_for_egtb_zero: true # If true the bot will offer/accept draw in positions where the online_egtb returns a wdl of 0.
+    offer_draw_moves: 8      # How many moves in a row the absolute value of the score has to be below the draw value.
+    offer_draw_pieces: 5    # Only if the pieces on board are less than or equal to this value, the bot offers/accepts draw.
 
   online_moves:
     max_out_of_book_moves: 10 # Stop using online opening books after they don't have a move for 'max_out_of_book_moves' positions. Doesn't apply to the online endgame tablebases.
@@ -50,12 +50,12 @@ engine:                      # Engine settings.
       min_depth: 20
       min_knodes: 0
     lichess_opening_explorer:
-      enabled: false
-      min_time: 20
-      source: "masters"      # One of "lichess", "masters", "player"
+      enabled: true
+      min_time: 15
+      source: "lichess"      # One of "lichess", "masters", "player"
       player_name: ""        # The lichess username. Leave empty for the bot's username to be used. Used only when source is "player".
       sort: "winrate"        # One of "winrate", "games_played"
-      min_games: 10          # Minimum number of times a move must have been played to be chosen.
+      min_games: 30          # Minimum number of times a move must have been played to be chosen.
     online_egtb:
       enabled: false
       min_time: 20
